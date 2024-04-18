@@ -5,9 +5,19 @@ on:
     types: [opened, edited]
 
 jobs:
-  print-hello-world:
+  checkTitleFormat:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello
-        run: echo "Hello World"
+      - name: Check Title Format
+        uses: actions/checkout@main
+      - name: Run Title Format Check
+        run: |
+            titleRegex='/update/i'
+            if [[ ! "$PR_TITLE" =~ $titleRegex ]]; then
+              echo "Pull request title does not match the required format."
+              echo "Please ensure the title follows the specified format."
+              exit 1
+            fi
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}

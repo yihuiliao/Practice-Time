@@ -28,4 +28,3 @@ function ButtonHook(props: ButtonHookProps) {
 }
 
 export default Buttons;
-
