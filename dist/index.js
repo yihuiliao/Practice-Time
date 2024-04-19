@@ -31083,14 +31083,15 @@ const github = __nccwpck_require__(4293);
 
 run();
 async function run() {
-  const title = github.context.payload.pull_request?.title;
+  // const title = github.context.payload.pull_request?.title;
+  const title = core.getInput("pr-title")
 
   core.info(
     `🔎 Checking if the title of this PR "${title}" meets the requirements ...`
   );
 
-  if ((/update/i).test(title)) {
-    core.info('All good');
+  if ((/^update:?|^support:?|^feat(ure)?:?|^remove:?|^add:?|^fix:?|^bump:?|^docs:?|^pre-release:?|^revert:?/i).test(title)) {
+    core.info('Success');
   } else {
     core.setFailed(core.error);
   }
