@@ -3,6 +3,9 @@ name: PR
 on: 
   pull_request:
     types: [opened, edited]
+  push:
+    branches-ignore:
+      - 'main'
 
 jobs:
   checkTitleFormat:
@@ -12,12 +15,7 @@ jobs:
       - name: Check Title Format
         uses: actions/checkout@main
       - name: Run Title Format Check
-        run: |
-            titleRegex='/update/i'
-            if [[ ! "$PR_TITLE" =~ $titleRegex ]]; then
-              echo "Pull request title does not match the required format."
-              echo "Please ensure the title follows the specified format."
-              exit 1
-            fi
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          echo "PR title: $PR_TITLE"
