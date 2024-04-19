@@ -3,10 +3,7 @@ name: PR
 on: 
   pull_request:
     types: [opened, edited]
-  push:
-    branches-ignore:
-      - 'main'
-
+    
 jobs:
   checkTitleFormat:
     runs-on: ubuntu-latest
