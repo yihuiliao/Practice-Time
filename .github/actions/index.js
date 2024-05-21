@@ -35,6 +35,7 @@ async function run() {
 
   // console.log(...github.context.repo);
   // await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+
   //   ...github.context.repo,
   //   issue_number: number,
   //   body: 'Thanks',
