@@ -21,9 +21,9 @@ async function run() {
   //   core.setFailed(core.error);
   // }
 
-  // await octokit.rest.issues.createComment({
-  //   ...github.context.repo,
-  //   issue_number: number,
-  //   body: 'Thanks'
-  // });
+  await octokit.rest.issues.createComment({
+    ...github.context.repo,
+    issue_number: number,
+    body: 'Thanks'
+  });
 }
