@@ -21,4 +21,6 @@ jobs:
       - name: Hello world action step
         uses: ./.github/actions
         with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-number: ${{ github.event.pull_request.number }}
           pr-title: ${{ github.event.pull_request.title }}
