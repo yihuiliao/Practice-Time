@@ -17,10 +17,17 @@ async function run() {
   if ((/^update:?|^support:?|^feat(ure)?:?|^remove:?|^add:?|^fix:?|^bump:?|^docs:?|^pre-release:?|^revert:?/i).test(title)) {
     core.info('Success');
   } 
-  // else {
-  //   core.setFailed(core.error);
-  // }
+  else {
+    core.info('Sorry this failed, please read our PR naming guide to see how to correctly name your PR');
+    core.setFailed();
+  }
 
+  // console.log(...github.context.repo);
+  // await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+  //   ...github.context.repo,
+  //   issue_number: number,
+  //   body: 'Thanks',
+  // })
   // await octokit.rest.issues.createComment({
   //   ...github.context.repo,
   //   issue_number: number,
