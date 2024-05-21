@@ -10,6 +10,17 @@ async function run() {
 
   const octokit = github.getOctokit(token)
 
+  // const octokit = new Octokit({
+  //   auth: token
+  // });
+
+
+  const context = github.context;
+  if (context.payload.pull_request == null) {
+      core.setFailed('No pull request found.');
+      return;
+  }
+
   core.info(
     `🔎 Checking if the title of this PR "${title}" meets the requirements ...`
   );
@@ -18,12 +29,21 @@ async function run() {
     core.info('Success');
   } 
   // else {
-  //   core.setFailed(core.error);
+  //   core.info('Sorry this failed, please read our PR naming guide to see how to correctly name your PR');
+  //   core.setFailed();
   // }
 
-  // await octokit.rest.issues.createComment({
+  // console.log(...github.context.repo);
+  // await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
   //   ...github.context.repo,
   //   issue_number: number,
-  //   body: 'Thanks'
-  // });
+  //   body: 'Thanks',
+  // })
+  const {data} = await octokit.rest.issues.createComment({
+    ...context.repo,
+    issue_number: number,
+    body: 'Thanks'
+  });
+
+  console.log(data);
 }
