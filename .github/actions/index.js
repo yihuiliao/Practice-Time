@@ -19,7 +19,7 @@ async function run() {
   } 
   else {
     core.info('Sorry this failed, please read our PR naming guide to see how to correctly name your PR');
-    core.setFailed(core.error);
+    core.setFailed();
   }
 
   // console.log(...github.context.repo);
