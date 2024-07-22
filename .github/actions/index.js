@@ -14,8 +14,6 @@ async function run() {
   //   auth: token
   // });
 
-  // random comment to add commit
-
   const context = github.context;
   if (context.payload.pull_request == null) {
       core.setFailed('No pull request found.');
