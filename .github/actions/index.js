@@ -3,16 +3,8 @@ const github = require('@actions/github');
 
 run();
 async function run() {
-  // const title = github.context.payload.pull_request?.title;
   const title = core.getInput("pr-title")
-  // const number = core.getInput("pr-number")
-  // const token = core.getInput("repo-token")
 
-  // const octokit = github.getOctokit(token)
-
-  // const octokit = new Octokit({
-  //   auth: token
-  // });
 
   const context = github.context;
   if (context.payload.pull_request == null) {
@@ -24,16 +16,14 @@ async function run() {
     `🔎 Checking if the title of this PR "${title}" meets the requirements ...`
   );
 
-  if ((/^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:/gmi).test(title)) {
-    core.info('Success');
+  if ((/^\[?wip\]?/i).test(title)) {
+    core.info('This PR is marked as a WIP. Skipping validation');
   } 
+  else if ((/^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:/gmi).test(title)) {
+    core.info('Success');
+  }
   else {
     core.info('Sorry this failed, please read our PR naming guide to see how to correctly name your PR');
-    // const {data} = await octokit.rest.issues.createComment({
-    //   ...context.repo,
-    //   issue_number: number,
-    //   body: 'This failed, please read our [PR naming guide](https://www.google.com/)'
-    // });
     core.setFailed();
   }
 }
