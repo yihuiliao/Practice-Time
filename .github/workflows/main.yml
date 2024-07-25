@@ -19,7 +19,7 @@ jobs:
           node-version: '18'
       - name: install
         run: yarn install
-      - name: Hello world action step
+      - name: Lint PR
         uses: ./.github/actions
         with:
           pr-title: ${{ github.event.pull_request.title }}
