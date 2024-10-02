@@ -28,7 +28,7 @@ async function run() {
     core.info('Success');
   } 
   else {
-    core.info('Sorry this failed, please read our PR naming guide to see how to correctly name your PR');
+    core.info('Sorry this failed, please read our [PR naming guide](https://github.com/adobe/react-spectrum/wiki/Pull-Request-Naming-Guide) to see how to correctly name your PR');
     // const {data} = await octokit.rest.issues.createComment({
     //   ...context.repo,
     //   issue_number: number,
