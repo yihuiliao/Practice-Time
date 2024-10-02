@@ -20,7 +20,7 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: 'yarn.lock'
       - name: install
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Hello world action step
         uses: ./.github/actions
         with:
