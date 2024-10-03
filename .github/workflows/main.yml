@@ -16,7 +16,7 @@ jobs:
             if [[ "${TITLE,,}" =~ ^\[?\(?wip\]?\)? ]]; then
             echo "PR is marked as a WIP. Skipping validation."
             exit 0
-            elif (echo "$TITLE" | grep -P "^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:"); then
+            elif (echo "${$TITLE,,}" | grep -P "^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:"); then
             echo "Success"
             exit 0
             else
