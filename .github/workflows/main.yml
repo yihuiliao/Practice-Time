@@ -10,7 +10,8 @@ jobs:
     name: Lint PR Title
     steps:
       - name: Check PR Title
-        env: ${{ github.event.pull_request.title}}
+        env: 
+          TITLE: ${{ github.event.pull_request.title}}
         run: |
             if [[ "$TITLE" =~ ^octocat ]]; then
             echo "PR title starts with 'octocat'"
