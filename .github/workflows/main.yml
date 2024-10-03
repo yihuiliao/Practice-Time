@@ -14,8 +14,11 @@ jobs:
           TITLE: ${{ github.event.pull_request.title}}
 
         run: |
-            if [[ "$TITLE" =~ ^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?: ]]; then
-            echo "PR title starts with 'octocat'"
+            if [[ "$TITLE" =~ ^\[?\(?wip\]?\)? ]]; then
+            echo "PR is marked as a WIP. Skipping validation."
+            exit 0
+            elif [[ "$TITLE" =~ ^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?: ]]; then
+            echo "Success"
             exit 0
             else
             echo "PR title did not start with 'octocat'"
