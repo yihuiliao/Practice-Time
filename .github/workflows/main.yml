@@ -12,12 +12,12 @@ jobs:
       - name: Check PR Title
         env: 
           TITLE: ${{ github.event.pull_request.title}}
-          REGEX_PATTERN: "^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:"
+          REGEX_PATTERN: 
         run: |
             if [[ "$TITLE" =~ ^\[?\(?wip\]?\)? ]]; then
             echo "PR is marked as a WIP. Skipping validation."
             exit 0
-            elif [[ "$TITLE" =~ $REGEX_PATTERN ]]; then
+            elif [[ "$TITLE" =~ ^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?: ]]; then
             echo "Success"
             exit 0
             else
