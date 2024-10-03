@@ -13,7 +13,7 @@ jobs:
         env: 
           TITLE: ${{ github.event.pull_request.title}}
         run: |
-            if [[ "$TITLE" =~ ^octocat ]]; then
+            if [[ "$TITLE" =~ /^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:/gmi ]]; then
             echo "PR title starts with 'octocat'"
             exit 0
             else
