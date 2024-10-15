@@ -24,7 +24,7 @@ async function run() {
     `🔎 Checking if the title of this PR "${title}" meets the requirements ...`
   );
 
-  if ((/^update:?|^support:?|^feat(ure)?:?|^remove:?|^add:?|^fix:?|^bump:?|^docs:?|^pre-release:?|^revert:?/i).test(title)) {
+  if ((/^(fix|feat|build|chore|docs|test|refactor|ci|localize|bump|revert)(\(([A-Za-z])\w+\))?:/gmi).test(title)) {
     core.info('Success');
   } 
   else {
@@ -36,12 +36,4 @@ async function run() {
     // });
     core.setFailed();
   }
-
-  // console.log(...github.context.repo);
-  // await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
-
-  //   ...github.context.repo,
-  //   issue_number: number,
-  //   body: 'Thanks',
-  // })
 }
